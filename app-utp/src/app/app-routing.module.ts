@@ -1,18 +1,21 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { IonicModule } from '@ionic/angular';
-import { FormsModule } from '@angular/forms';
-import { HomePage } from './home.page';
+import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 
-import { HomePageRoutingModule } from './home-routing.module'; // Esta línea es vital
+const routes: Routes = [
+  {
+    path: 'home',
+    loadChildren: () =>
+      import('./home/home.module').then(m => m.HomePageModule)
+  },
+  {
+    path: '',
+    redirectTo: 'home',
+    pathMatch: 'full'
+  }
+];
 
 @NgModule({
-  imports: [
-    CommonModule,
-    FormsModule,
-    IonicModule,
-    HomePageRoutingModule
-  ],
-  declarations: [HomePage]
+  imports: [RouterModule.forRoot(routes, { preloadingStrategy: PreloadAllModules })],
+  exports: [RouterModule]
 })
-export class HomePageModule {}
+export class AppRoutingModule {}
