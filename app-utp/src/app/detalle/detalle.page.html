@@ -1,13 +1,20 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>detalle</ion-title>
+<ion-header>
+  <ion-toolbar color="danger">
+    <ion-title>Detalle de la app</ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">detalle</ion-title>
-    </ion-toolbar>
-  </ion-header>
+<ion-content class="ion-padding">
+  <h1>Detalle de registro</h1>
+  <p>Comunicación entre componentes Angular.</p>
+
+  <app-resumen-app [tipo]="tipo"></app-resumen-app>
+
+  <app-selector-tipo
+    (tipoCambiado)="actualizarTipo($event)">
+  </app-selector-tipo>
+
+  <ion-button expand="block" fill="clear" routerLink="/home">
+    Volver a Home
+  </ion-button>
 </ion-content>
